@@ -1,8 +1,7 @@
-package com.oracle.cerner.cloud.soarian.flows.main;
+package com.github.kostia.ecohub.flows.main;
 
-import com.oracle.cerner.cloud.soarian.config.IdcsConfig;
+import com.github.kostia.ecohub.config.IdcsConfig;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

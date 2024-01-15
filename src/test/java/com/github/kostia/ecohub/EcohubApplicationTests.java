@@ -1,4 +1,4 @@
-package com.oracle.cerner.cloud.soarian;
+package com.github.kostia.ecohub;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

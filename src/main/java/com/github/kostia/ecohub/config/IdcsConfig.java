@@ -1,4 +1,4 @@
-package com.oracle.cerner.cloud.soarian.config;
+package com.github.kostia.ecohub.config;
 
 
 import lombok.Data;
