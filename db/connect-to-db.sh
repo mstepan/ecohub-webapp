@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker exec -it eco-hub-db psql -U postgres -d ecohub
+docker exec -it ecohub-db psql -U postgres -d ecohub
