@@ -1,9 +1,11 @@
 package com.github.kostia.ecohub.flows.department;
 
+import com.github.kostia.ecohub.flows.location.Location;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -25,6 +27,9 @@ public class Department {
 
     @Column("location_id")
     private Integer locationId;
+
+//    @Transient
+//    private Location location;
 
 }
 

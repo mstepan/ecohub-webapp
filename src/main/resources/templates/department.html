@@ -35,5 +35,52 @@
     <button type="submit">Create</button>
 </form>
 
+<button type="button" onclick="goBack()">Back</button>
+
+<div class="table-container">
+    <table id="departmentTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- Show Departments rows here -->
+        <tr th:each="singleDep : ${allDepartments}">
+            <td th:text="${singleDep.name}"></td>
+            <td th:text="${singleDep.phoneNumber}"></td>
+            <td th:text="${singleDep.locationId}"></td>
+            <td><button type="button" th:attr="onclick=|deleteDepartmentById('${singleDep.id}')|">Delete</button></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    function deleteDepartmentById(departmentId) {
+        $.ajax({
+                type: 'DELETE',
+                url: '/ecohub/department?departmentId=' + departmentId,
+                success: function(response) {
+                    // Handle success, e.g., redirect to a success page
+                    window.location.href = '/ecohub/department';
+                },
+                error: function(error) {
+                    // Handle error
+                    console.error('Error deleting:', error);
+                }
+            });
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/';
+    }
+</script>
+
 </body>
 </html>

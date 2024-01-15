@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 @Controller
 public class DepartmentController {
@@ -26,11 +29,7 @@ public class DepartmentController {
 
     @GetMapping("/department")
     public String department(Model model) {
-
-        model.addAttribute("department", Department.builder().build());
-
-        model.addAttribute("allLocations", locationRepo.findAll());
-        model.addAttribute("allDepartments", departmentRepo.findAll());
+        fillDataModel(model);
 
         return "department";
     }
@@ -39,10 +38,7 @@ public class DepartmentController {
     public String addDepartment(@ModelAttribute Department department, Model model) {
         departmentRepo.save(department);
 
-        model.addAttribute("department", Department.builder().build());
-
-        model.addAttribute("allLocations", locationRepo.findAll());
-        model.addAttribute("allDepartments", departmentRepo.findAll());
+        fillDataModel(model);
 
         return "department";
     }
@@ -52,12 +48,22 @@ public class DepartmentController {
 
         departmentRepo.deleteById(Integer.parseInt(departmentId));
 
-        model.addAttribute("department", Department.builder().build());
-
-        model.addAttribute("allLocations", locationRepo.findAll());
-        model.addAttribute("allDepartments", departmentRepo.findAll());
+        fillDataModel(model);
 
         return "department";
+    }
+
+    private void fillDataModel(Model model) {
+        model.addAttribute("department", Department.builder().build());
+
+        List<Department> allDepartments = new ArrayList<>();
+        departmentRepo.findAll().forEach(dep -> {
+            //dep.location(locationRepo.findById(dep.locationId()).get());
+            allDepartments.add(dep);
+        });
+
+        model.addAttribute("allLocations", locationRepo.findAll());
+        model.addAttribute("allDepartments", allDepartments);
     }
 
 }
