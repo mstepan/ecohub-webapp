@@ -1,6 +1,5 @@
 package com.github.kostia.ecohub.flows.department;
 
-import com.github.kostia.ecohub.flows.location.Location;
 import com.github.kostia.ecohub.flows.location.LocationRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Slf4j
 @Controller

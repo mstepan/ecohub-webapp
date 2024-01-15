@@ -3,13 +3,12 @@ package com.github.kostia.ecohub.flows.location;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -40,7 +39,7 @@ public class LocationController {
         return "location";
     }
 
-    @DeleteMapping("/location")
+    @GetMapping("/location/delete")
     public String deleteLocation(@RequestParam("locationId") String locationId, Model model) {
 
         locationRepo.deleteById(Integer.parseInt(locationId));

@@ -58,18 +58,21 @@
 
 <script>
     function deleteLocationById(locationId) {
-        $.ajax({
-                type: 'DELETE',
-                url: '/ecohub/location?locationId=' + locationId,
-                success: function(response) {
-                    // Handle success, e.g., redirect to a success page
-                    window.location.href = '/ecohub/location';
-                },
-                error: function(error) {
-                    // Handle error
-                    console.error('Error deleting:', error);
-                }
-            });
+
+        window.location.href = '/ecohub/location/delete?locationId=' + locationId;
+
+<!--        $.ajax({-->
+<!--                type: 'DELETE',-->
+<!--                url: '/ecohub/location?locationId=' + locationId,-->
+<!--                success: function(response) {-->
+<!--                    // Handle success, e.g., redirect to a success page-->
+<!--                    window.location.href = '/ecohub/location';-->
+<!--                },-->
+<!--                error: function(error) {-->
+<!--                    // Handle error-->
+<!--                    console.error('Error deleting:', error);-->
+<!--                }-->
+<!--            });-->
     }
 
     function goBack() {
