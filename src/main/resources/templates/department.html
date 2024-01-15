@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Department Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Create Department</h2>
+
+<form th:action="@{/department}" method="post" th:object="${department}">
+    <!-- Name -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required maxlength="100"/>
+
+    <br/>
+
+    <!-- Phone Number -->
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required maxlength="32"/>
+
+    <br/>
+
+    <!-- Location Dropdown -->
+    <label for="location">Location:</label>
+    <select id="location" name="location.id" th:field="*{locationId}" required>
+        <option th:each="singleLocation : ${allLocations}" th:value="${singleLocation.id}" th:text="${singleLocation.postalCode + ', ' + singleLocation.address}"></option>
+    </select>
+
+    <br/>
+
+    <button type="submit">Create</button>
+</form>
+
+</body>
+</html>
