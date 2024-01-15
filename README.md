@@ -24,6 +24,12 @@ Ecohub Web Application using Spring Boot
 open http://localhost:9090/ecohub
 ```
 
+## Postgresql DB in docker
+
+* Navigate to `db` folder.
+* To create a new DB, just execute `create-db.sh`. All DDLs from `init.sql` will be applied.
+* To connect to local DB in docker, execute `./connect-db.sh`
+
 # Banner generation
 
 Banner generated using https://manytools.org/hacker-tools/ascii-banner/ with `ANSI Shadow` style.
