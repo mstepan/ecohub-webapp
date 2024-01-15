@@ -24,6 +24,8 @@ Ecohub Web Application using Spring Boot
  http://localhost:9090/ecohub
 ```
 
+
+
 ## Postgresql DB in docker
 
 * Navigate to `db` folder.
