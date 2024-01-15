@@ -1,0 +1,29 @@
+server:
+  port: 9090
+  shutdown: graceful
+
+  # specify main URL for service
+  servlet.context-path: /ecohub
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      min-spare: ${TOMCAT_THREADS_MIN:10}
+      max: ${TOMCAT_THREADS_MAX:200}
+
+idcs:
+  domainUrl: https://idcs-4659217064a644a7a2fd14d3d9a17c6b.identity.oraclecloud.com:443
+  # Soarian-Finance integration
+  clientId: 46b4c97dcf68461398f62ad2c5894208
+  clientSecret: 712d90a1-06c6-4643-a20b-65297465bc24
+  callbackUrl: https://localhost:8443/soarian/callback
+
+spring:
+  application:
+    name: ecohub
+  lifecycle:
+    timeout-per-shutdown-phase: 15s # specify grace period 15 seconds
+
+
+
+

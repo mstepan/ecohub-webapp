@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Soarian Finance</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p>Soarian Finance</p>
+
+    <img th:src="@{/images/soarian-logo.png}" alt="Soarian">
+
+    <br/>
+    <p th:text="|idToken: '${idToken}'|"></p>
+
+    <br/>
+    <a th:href="@{/logout}">Logout</a>
+
+    <br/>
+    <a th:href="@{/introspect}">Introspect</a>
+
+</body>
+</html>
