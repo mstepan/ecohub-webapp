@@ -1,6 +1,6 @@
 package com.github.kostia.ecohub.flows.main;
 
-import com.github.kostia.ecohub.config.IdcsConfig;
+import com.github.kostia.ecohub.config.EcohubConfig;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-    private final IdcsConfig idcsConfig;
+    private final EcohubConfig ecohubConfig;
 
-    public MainController(IdcsConfig idcsConfig) {
-        this.idcsConfig = idcsConfig;
+    public MainController(EcohubConfig ecohubConfig) {
+        this.ecohubConfig = ecohubConfig;
     }
 
     @GetMapping("/")
     public String main(HttpServletRequest request, Model model) {
+
 
 //        HttpSession session = request.getSession(true);
 

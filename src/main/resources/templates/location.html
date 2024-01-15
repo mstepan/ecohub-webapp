@@ -26,6 +26,8 @@
     <button type="button" onclick="addLocation()">Add Location</button>
 </form>
 
+<button type="button" onclick="goBack()">Back</button>
+
 <table id="locationTable">
     <thead>
     <tr>
@@ -40,6 +42,8 @@
     <!-- Location data will be displayed here -->
     </tbody>
 </table>
+
+
 
 <script>
     function addLocation() {
@@ -64,6 +68,10 @@
     function deleteRow(button) {
         var row = button.parentNode.parentNode;
         row.parentNode.removeChild(row);
+    }
+
+    function goBack() {
+        window.history.back();
     }
 </script>
 
