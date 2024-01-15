@@ -47,7 +47,7 @@ public class LocationController {
         model.addAttribute("location", Location.builder().build());
         model.addAttribute("allLocations", locationRepo.findAll());
 
-        return "location";
+        return "redirect:/location";
     }
 
 }

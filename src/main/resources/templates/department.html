@@ -63,18 +63,7 @@
 
 <script>
     function deleteDepartmentById(departmentId) {
-        $.ajax({
-                type: 'DELETE',
-                url: '/ecohub/department?departmentId=' + departmentId,
-                success: function(response) {
-                    // Handle success, e.g., redirect to a success page
-                    window.location.href = '/ecohub/department';
-                },
-                error: function(error) {
-                    // Handle error
-                    console.error('Error deleting:', error);
-                }
-            });
+       window.location.href = '/ecohub/department/delete?departmentId=' + departmentId;
     }
 
     function goBack() {

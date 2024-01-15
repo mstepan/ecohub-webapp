@@ -44,14 +44,14 @@ public class DepartmentController {
         return "department";
     }
 
-    @DeleteMapping("/department")
+    @GetMapping("/department/delete")
     public String deleteDepartment(@RequestParam("departmentId") String departmentId, Model model) {
 
         departmentRepo.deleteById(Integer.parseInt(departmentId));
 
         fillDataModel(model);
 
-        return "department";
+        return "redirect:/department";
     }
 
     private void fillDataModel(Model model) {
