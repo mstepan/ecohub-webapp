@@ -136,29 +136,29 @@ CREATE TABLE overtime (
 
 -- Insert some values
 
-INSERT INTO location(location_id, address, postal_code, city, country) VALUES (1, 'Krasnova', '65059', 'Odessa', 'UA');
-
-INSERT INTO department(department_id, department_name, phone_number, location_id) VALUES (1, 'Mnistry of Defense', '725-160-37', 1);
-
-INSERT INTO disaster(disaster_id,disaster_type,casualties,total_cost) VALUES (12, 'Earthquake', '65059', '1500.60');
-
-INSERT INTO department_disaster(department_id,disaster_id,common_description) VALUES (1, 12, 'some common description');
-
-INSERT INTO head_leader( leader_id,first_name,last_name) VALUES (1,'Max', 'Pax');
-
-INSERT INTO preventive_measure(measure_id,head_leader_id,department_id) VALUES (1,1,1);
-
-INSERT INTO charity_event(event_id,head_leader_id,department_id,funds_raised) VALUES (1,1,1,6500.50);
-
-INSERT INTO job(job_id,job_type,min_salary,max_salary) VALUES (1,'Java programmer',760.3,880.6);
-
-INSERT INTO manager (manager_id,first_name,last_name) VALUES (1,'John','Doe');
-
-INSERT INTO employee(employee_id,department_id,manager_id,first_name,last_name,gender,age,email,hire_date,phone_number)
-VALUES (1,1,1,'Tomas','Richardson','male',25,'TomasR@gmail.com','12.12.2023','+380 457 754');
-
-INSERT INTO day_off (day_off_id,employee_id,number_of_days,reason,start_date,end_date) VALUES(1,1,7,'Car Accident','20.05.2005','27.05.2005');
-
-INSERT INTO employee_job_history(job_history_id,job_id,employee_id,salary,bonus,start_date,end_date) VALUES (1,1,1,4000.20,500.1,'06.09.2022','07.04.2024');
-
-INSERT INTO overtime(overtime_id,job_history_id,start_date,end_date) VALUES (1,1,'05.06.2007',' 08.06.2007');
+--INSERT INTO location(location_id, address, postal_code, city, country) VALUES (1, 'Krasnova', '65059', 'Odessa', 'UA');
+--
+--INSERT INTO department(department_id, department_name, phone_number, location_id) VALUES (1, 'Mnistry of Defense', '725-160-37', 1);
+--
+--INSERT INTO disaster(disaster_id,disaster_type,casualties,total_cost) VALUES (12, 'Earthquake', '65059', '1500.60');
+--
+--INSERT INTO department_disaster(department_id,disaster_id,common_description) VALUES (1, 12, 'some common description');
+--
+--INSERT INTO head_leader( leader_id,first_name,last_name) VALUES (1,'Max', 'Pax');
+--
+--INSERT INTO preventive_measure(measure_id,head_leader_id,department_id) VALUES (1,1,1);
+--
+--INSERT INTO charity_event(event_id,head_leader_id,department_id,funds_raised) VALUES (1,1,1,6500.50);
+--
+--INSERT INTO job(job_id,job_type,min_salary,max_salary) VALUES (1,'Java programmer',760.3,880.6);
+--
+--INSERT INTO manager (manager_id,first_name,last_name) VALUES (1,'John','Doe');
+--
+--INSERT INTO employee(employee_id,department_id,manager_id,first_name,last_name,gender,age,email,hire_date,phone_number)
+--VALUES (1,1,1,'Tomas','Richardson','male',25,'TomasR@gmail.com','12.12.2023','+380 457 754');
+--
+--INSERT INTO day_off (day_off_id,employee_id,number_of_days,reason,start_date,end_date) VALUES(1,1,7,'Car Accident','20.05.2005','27.05.2005');
+--
+--INSERT INTO employee_job_history(job_history_id,job_id,employee_id,salary,bonus,start_date,end_date) VALUES (1,1,1,4000.20,500.1,'06.09.2022','07.04.2024');
+--
+--INSERT INTO overtime(overtime_id,job_history_id,start_date,end_date) VALUES (1,1,'05.06.2007',' 08.06.2007');

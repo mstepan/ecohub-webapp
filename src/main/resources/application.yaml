@@ -17,8 +17,17 @@ ecohub:
 spring:
   application:
     name: ecohub
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecohub
+    username: postgres
+    password: postgres
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5
+      data-source-properties: stringtype=unspecified
   lifecycle:
     timeout-per-shutdown-phase: 15s # specify grace period 15 seconds
+
 
 
 

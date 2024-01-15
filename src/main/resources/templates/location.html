@@ -13,23 +13,24 @@
 <form id="locationForm" th:action="@{/location}" th:object="${location}" method="post">
 
     <label for="address">Address:</label>
-    <input type="text" id="address" th:field="*{address}" required>
+    <input type="text" id="address" th:field="*{address}" required maxlength="128">
 
     <label for="postalCode">Postal Code:</label>
-    <input type="text" id="postalCode" th:field="*{postalCode}" required>
+    <input type="text" id="postalCode" th:field="*{postalCode}" required maxlength="32">
 
     <label for="city">City:</label>
-    <input type="text" id="city"  th:field="*{city}" required>
+    <input type="text" id="city"  th:field="*{city}" required maxlength="64">
 
     <label for="country">Country:</label>
-    <input type="text" id="country" th:field="*{country}" required>
+    <input type="text" id="country" th:field="*{country}" required maxlength="2">
 
     <input type="submit" value="Add Location">
 </form>
 
 <button type="button" onclick="goBack()">Back</button>
 
-<table id="locationTable">
+<div class="table-container">
+    <table id="locationTable">
     <thead>
     <tr>
         <th>Address</th>
@@ -47,41 +48,24 @@
         <td th:text="${singleLocation.postalCode}"></td>
         <td th:text="${singleLocation.city}"></td>
         <td th:text="${singleLocation.country}"></td>
-        <td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+        <td><button type="button" th:attr="onclick=|deleteRow('${singleLocation.id}')|">Delete</button></td>
     </tr>
 
     </tbody>
 </table>
+</div>
 
 
 <script>
-<!--    function addLocation() {-->
-<!--        var form = document.getElementById("locationForm");-->
-<!--        var table = document.getElementById("locationTable").getElementsByTagName('tbody')[0];-->
+    function deleteRow(locationId) {
+        //var row = button.parentNode.parentNode;
+        //row.parentNode.removeChild(row);
 
-<!--        var row = table.insertRow(table.rows.length);-->
-
-<!--        var cell1 = row.insertCell(0);-->
-<!--        var cell2 = row.insertCell(1);-->
-<!--        var cell3 = row.insertCell(2);-->
-<!--        var cell4 = row.insertCell(3);-->
-<!--        var cell5 = row.insertCell(4);-->
-
-<!--        cell1.innerHTML = form.address.value;-->
-<!--        cell2.innerHTML = form.postalCode.value;-->
-<!--        cell3.innerHTML = form.city.value;-->
-<!--        cell4.innerHTML = form.country.value;-->
-<!--        cell5.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';-->
-<!--    }-->
-
-    function deleteRow(button) {
-        var row = button.parentNode.parentNode;
-        row.parentNode.removeChild(row);
+        alert(locationId);
     }
 
     function goBack() {
         window.location.href = '/ecohub/';
-        //window.history.back();
     }
 </script>
 
