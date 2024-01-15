@@ -30,6 +30,15 @@ Ecohub Web Application using Spring Boot
 * To create a new DB, just execute `create-db.bat`. All DDLs from `init.sql` will be applied.
 * To connect to local DB in docker, execute `./connect-db.bat`
 
+## Start/stop DB
+
+* Check db state in docker using: `docker ps`
+You should see your docker container up and running.
+
+* Start DB `docker start ecohub-db`
+
+* Stop DB  `docker stop ecohub-db`
+
 # Banner generation
 
 Banner generated using https://manytools.org/hacker-tools/ascii-banner/ with `ANSI Shadow` style.
