@@ -10,7 +10,6 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @AllArgsConstructor
 @Builder
-//@Accessors(fluent = false, chain = false)
 @Table("location")
 public class Location {
 

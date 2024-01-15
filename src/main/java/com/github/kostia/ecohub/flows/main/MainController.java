@@ -20,9 +20,7 @@ public class MainController {
     @GetMapping("/")
     public String main(HttpServletRequest request, Model model) {
 
-
 //        HttpSession session = request.getSession(true);
-
         model.addAttribute("idToken", "my-cool-idtoken");
 
         return "index";
