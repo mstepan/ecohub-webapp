@@ -11,9 +11,6 @@ server:
       min-spare: ${TOMCAT_THREADS_MIN:10}
       max: ${TOMCAT_THREADS_MAX:200}
 
-ecohub:
-  domainUrl: https://domain.com
-
 spring:
   application:
     name: ecohub
