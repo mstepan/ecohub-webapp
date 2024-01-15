@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -40,9 +41,9 @@ public class LocationController {
     }
 
     @DeleteMapping("/location")
-    public String deleteLocation(Model model) {
+    public String deleteLocation(@RequestParam("locationId") String locationId, Model model) {
 
-        locationRepo.deleteById(Integer.parseInt((String)model.getAttribute("locationId")));
+        locationRepo.deleteById(Integer.parseInt(locationId));
 
         model.addAttribute("location", Location.builder().build());
         model.addAttribute("allLocations", locationRepo.findAll());
