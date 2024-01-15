@@ -26,7 +26,7 @@
 
     <!-- Location Dropdown -->
     <label for="location">Location:</label>
-    <select id="location" name="location.id" th:field="*{locationId}" required>
+    <select id="location" name="locationId" th:field="*{locationId}" required>
         <option th:each="singleLocation : ${allLocations}" th:value="${singleLocation.id}" th:text="${singleLocation.postalCode + ', ' + singleLocation.address}"></option>
     </select>
 
@@ -53,7 +53,7 @@
         <tr th:each="singleDep : ${allDepartments}">
             <td th:text="${singleDep.name}"></td>
             <td th:text="${singleDep.phoneNumber}"></td>
-            <td th:text="${singleDep.locationId}"></td>
+            <td th:text="${singleDep.location.postalCode + ', ' + singleDep.location.address}"></td>
             <td><button type="button" th:attr="onclick=|deleteDepartmentById('${singleDep.id}')|">Delete</button></td>
         </tr>
         </tbody>

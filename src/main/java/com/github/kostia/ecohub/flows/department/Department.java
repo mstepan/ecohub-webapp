@@ -4,13 +4,16 @@ import com.github.kostia.ecohub.flows.location.Location;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Table("department")
 public class Department {
@@ -28,8 +31,8 @@ public class Department {
     @Column("location_id")
     private Integer locationId;
 
-//    @Transient
-//    private Location location;
+    @Transient
+    private Location location;
 
 }
 
