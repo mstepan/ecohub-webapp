@@ -1,0 +1,1 @@
+docker exec -it ecohub-db psql -U postgres -d ecohub
