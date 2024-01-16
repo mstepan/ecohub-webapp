@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head Leader</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Location Information</h2>
+
+<form id="headLeaderForm" th:action="@{/head_leader}" th:object="${headLeader}" method="post">
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" th:field="*{firstName}" required maxlength="128">
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" th:field="*{lastName}" required maxlength="128">
+
+    <button type="submit">Add Leader</button>
+</form>
+
+<button type="button" onclick="goBack()">Back</button>
+<br>
+
+<!-- Display error message if it exists -->
+<span th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></span>
+<br>
+
+<div class="table-container">
+    <table id="headLeaderTable">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- Show Head Leaders rows here -->
+    <tr th:each="singleHeadLeader : ${allHeadLeaders}">
+        <td th:text="${singleHeadLeader.firstName}"></td>
+        <td th:text="${singleHeadLeader.lastName}"></td>
+        <td><button type="button" th:attr="onclick=|deleteHeadLeaderById('${singleHeadLeader.id}')|">Delete</button></td>
+    </tr>
+    </tbody>
+
+</table>
+</div>
+
+<script>
+    function deleteHeadLeaderById(headLeaderId) {
+        window.location.href = '/ecohub/head_leader/delete?headLeaderId=' + headLeaderId;
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/';
+    }
+</script>
+
+</body>
+</html>
