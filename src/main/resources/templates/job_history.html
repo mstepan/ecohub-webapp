@@ -19,11 +19,23 @@
     </select>
     <br/>
 
-    <!-- Funds Raised -->
-<!--    <label for="fundsRaised">Funds Raised:</label>-->
-<!--    <input type="text" id="fundsRaised" name="fundsRaised" th:field="*{fundsRaised}" required maxlength="7"-->
-<!--           pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid double"/>-->
-<!--    <br/>-->
+    <!-- Start Date -->
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate" th:field="*{startDate}" required/>
+
+    <!-- End Date -->
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" name="endDate" th:field="*{endDate}"/>
+
+    <!-- Salary  -->
+    <label for="salary">Salary:</label>
+    <input type="text" id="salary" name="salary" th:field="*{salary}" required maxlength="7"
+           pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid double"/>
+
+    <!-- Bonus  -->
+    <label for="bonus">Bonus:</label>
+    <input type="text" id="bonus" name="bonus" th:field="*{bonus}" required maxlength="7"
+           pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid double"/>
 
     <button type="submit">Create</button>
 </form>
@@ -35,6 +47,10 @@
         <thead>
         <tr>
             <th>Job</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Salary</th>
+            <th>Bonus</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -43,6 +59,10 @@
         <!-- Show Job History rows here -->
         <tr th:each="singleJobHistory : ${allJobHistory}">
             <td th:text="${singleJobHistory.job.type}"></td>
+            <td th:text="${singleJobHistory.startDate}"></td>
+            <td th:text="${singleJobHistory.endDate}"></td>
+            <td th:text="${singleJobHistory.salary}"></td>
+            <td th:text="${singleJobHistory.bonus}"></td>
             <td><button type="button" th:attr="onclick=|deleteJobHistoryById('${singleJobHistory.id}')|">Delete</button></td>
         </tr>
         </tbody>
