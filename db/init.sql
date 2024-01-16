@@ -158,8 +158,8 @@ CREATE TABLE overtime (
 --INSERT INTO employee(employee_id,department_id,manager_id,first_name,last_name,gender,age,email,hire_date,phone_number)
 --VALUES (1,1,1,'Tomas','Richardson','male',25,'TomasR@gmail.com','12.12.2023','+380 457 754');
 --
---INSERT INTO day_off (day_off_id,employee_id,number_of_days,reason,start_date,end_date) VALUES(1,1,7,'Car Accident','20.05.2005','27.05.2005');
+--INSERT INTO day_off (day_off_id,employee_id,number_of_days,reason,start_date,end_date) VALUES(111,1,7,'Car Accident','05.20.2005','05.27.2005');
 --
---INSERT INTO employee_job_history(job_history_id,job_id,employee_id,salary,bonus,start_date,end_date) VALUES (1,1,1,4000.20,500.1,'06.09.2022','07.04.2024');
+--INSERT INTO employee_job_history(job_history_id,job_id,employee_id,salary,bonus,start_date,end_date) VALUES (111,1,1,4000.20,500.1,'09.06.2022','04.07.2024');
 --
---INSERT INTO overtime(overtime_id,job_history_id,start_date,end_date) VALUES (1,1,'05.06.2007',' 08.06.2007');
+--INSERT INTO overtime(overtime_id,job_history_id,start_date,end_date) VALUES (111,1,'06.05.2007','06.08.2007');
