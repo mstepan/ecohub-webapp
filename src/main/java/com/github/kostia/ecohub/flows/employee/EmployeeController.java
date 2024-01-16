@@ -1,8 +1,6 @@
 package com.github.kostia.ecohub.flows.employee;
 
 import com.github.kostia.ecohub.flows.department.DepartmentRepo;
-import com.github.kostia.ecohub.flows.location.Location;
-import com.github.kostia.ecohub.flows.location.LocationRepo;
 import com.github.kostia.ecohub.flows.manager.ManagerRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.relational.core.conversion.DbActionExecutionException;
@@ -39,11 +37,23 @@ public class EmployeeController {
 
     @PostMapping("/employee")
     public String addEmployee(@ModelAttribute Employee employee, Model model) {
-        employeeRepo.save(employee);
+        if( employee.getAge() < 16 || employee.getAge() > 120 ){
+            model.addAttribute("errorMessage",
+                "Incorrect employee age, should be in range [16; 120]");
+        }
+        else {
+            try {
+                employeeRepo.save(employee);
+            } catch (DbActionExecutionException dbEx) {
+                log.error("Can't save Employee");
+                model.addAttribute("errorMessage",
+                    "Can't save Employee");
+            }
+        }
 
         fillDataModel(model);
 
-        return "location";
+        return "employee";
     }
 
     @GetMapping("/employee/delete")
