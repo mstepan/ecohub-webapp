@@ -45,10 +45,11 @@ CREATE TABLE disaster (
 );
 
 CREATE TABLE department_disaster (
+    dep_dis_id SERIAL PRIMARY KEY,
     department_id INTEGER,
     disaster_id INTEGER,
     common_description VARCHAR(200),
-    CONSTRAINT department_disaster_pk PRIMARY KEY (department_id, disaster_id),
+    CONSTRAINT department_disaster_unique UNIQUE (department_id, disaster_id),
     FOREIGN KEY (department_id) REFERENCES department(department_id),
     FOREIGN KEY (disaster_id) REFERENCES disaster(disaster_id)
 );

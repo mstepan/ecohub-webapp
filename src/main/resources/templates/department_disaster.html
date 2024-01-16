@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
+    <title>Disasters for Department</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Create Department</h2>
+
+<form th:action="@{/department_disaster}" method="post" th:object="${departmentDisaster}">
+<!--    &lt;!&ndash; Name &ndash;&gt;-->
+<!--    <label for="name">Name:</label>-->
+<!--    <input type="text" id="name" name="name" th:field="*{name}" required maxlength="100"/>-->
+
+<!--    <br/>-->
+
+<!--    &lt;!&ndash; Phone Number &ndash;&gt;-->
+<!--    <label for="phoneNumber">Phone Number:</label>-->
+<!--    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required maxlength="10"-->
+<!--           pattern="[0-9]{10}" title="Enter a 10-digit phone number"/>-->
+
+<!--    <br/>-->
+
+<!--    &lt;!&ndash; Location Dropdown &ndash;&gt;-->
+<!--    <label for="location">Location:</label>-->
+<!--    <select id="location" name="locationId" th:field="*{locationId}" required>-->
+<!--        <option th:each="singleLocation : ${allLocations}" th:value="${singleLocation.id}" th:text="${singleLocation.postalCode + ', ' + singleLocation.address}"></option>-->
+<!--    </select>-->
+
+<!--    <br/>-->
+
+    <button type="submit">Create</button>
+</form>
+
+<button type="button" onclick="goBack()">Back</button>
+
+<!--<div class="table-container">-->
+<!--    <table id="departmentTable">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Name</th>-->
+<!--            <th>Phone Number</th>-->
+<!--            <th>Location</th>-->
+<!--            <th>Disasters List</th>-->
+<!--            <th>Action</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+
+<!--        <tbody>-->
+<!--        &lt;!&ndash; Show Departments rows here &ndash;&gt;-->
+<!--        <tr th:each="singleDep : ${allDepartments}">-->
+<!--            <td th:text="${singleDep.name}"></td>-->
+<!--            <td th:text="${singleDep.phoneNumber}"></td>-->
+<!--            <td th:text="${singleDep.location.postalCode + ', ' + singleDep.location.address}"></td>-->
+<!--            <td><a th:href="@{/department_disaster}">See more...</a></td>-->
+<!--            <td><button type="button" th:attr="onclick=|deleteDepartmentById('${singleDep.id}')|">Delete</button></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+
+<!--    </table>-->
+<!--</div>-->
+
+<script>
+    function deleteDepartmentById(departmentId) {
+       window.location.href = '/ecohub/department_disaster/delete?departmentId=' + departmentId;
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/department';
+    }
+</script>
+
+</body>
+</html>

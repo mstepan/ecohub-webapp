@@ -45,6 +45,7 @@
             <th>Name</th>
             <th>Phone Number</th>
             <th>Location</th>
+            <th>Disasters List</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -55,6 +56,7 @@
             <td th:text="${singleDep.name}"></td>
             <td th:text="${singleDep.phoneNumber}"></td>
             <td th:text="${singleDep.location.postalCode + ', ' + singleDep.location.address}"></td>
+            <td><a th:href="@{/department_disaster}">See more...</a></td>
             <td><button type="button" th:attr="onclick=|deleteDepartmentById('${singleDep.id}')|">Delete</button></td>
         </tr>
         </tbody>
