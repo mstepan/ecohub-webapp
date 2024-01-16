@@ -46,7 +46,14 @@ public class DepartmentDisasterController {
 
         departmentDisaster.setDepartmentId(getDepartmentId(session));
 
-        depDisasterRepo.save(departmentDisaster);
+        try {
+            depDisasterRepo.save(departmentDisaster);
+        }
+        catch(DbActionExecutionException dbEx){
+            log.error("Can't save DepartmentDisaster with same disaster type");
+            model.addAttribute("errorMessage",
+                "Can't save DepartmentDisaster with same disaster type");
+        }
 
         fillDataModel(model, session);
 

@@ -21,7 +21,8 @@
 
     <!-- Funds Raised -->
     <label for="fundsRaised">Funds Raised:</label>
-    <input type="text" id="fundsRaised" name="fundsRaised" th:field="*{fundsRaised}" required />
+    <input type="text" id="fundsRaised" name="fundsRaised" th:field="*{fundsRaised}" required maxlength="7"
+           pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid double"/>
     <br/>
 
     <button type="submit">Create</button>
