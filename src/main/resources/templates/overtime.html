@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overtimes for Job History</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Overtimes for Job History ID: <span th:text="${jobHistory.id }"></span></h2>
+
+<form th:action="@{/overtime}" method="post" th:object="${overtime}">
+
+    <!-- Start Date -->
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate" th:field="*{startDate}" required/>
+
+    <!-- End Date -->
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" name="endDate" th:field="*{endDate}"  required/>
+
+    <button type="submit">Create Overtime</button>
+</form>
+
+<button type="button" th:attr="onclick=|goBack('${jobHistory.employeeId}')|">Back</button>
+
+<div class="table-container">
+    <table id="overtimeTable">
+        <thead>
+        <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- Show Overtimes rows here -->
+        <tr th:each="singleOvertime : ${allOvertimes}">
+            <td th:text="${singleOvertime.startDate}"></td>
+            <td th:text="${singleOvertime.endDate}"></td>
+            <td><button type="button" th:attr="onclick=|deleteOvertimeById('${singleOvertime.id}')|">Delete</button></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    function deleteOvertimeById(overtimeId) {
+       window.location.href = '/ecohub/overtime/delete?overtimeId=' + overtimeId;
+    }
+
+    function goBack(employeeId) {
+        window.location.href = '/ecohub/job_history?employeeId=' + employeeId;
+    }
+</script>
+
+</body>
+</html>

@@ -51,6 +51,7 @@
             <th>End Date</th>
             <th>Salary</th>
             <th>Bonus</th>
+            <th>Track Overtimes</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -63,6 +64,7 @@
             <td th:text="${singleJobHistory.endDate}"></td>
             <td th:text="${singleJobHistory.salary}"></td>
             <td th:text="${singleJobHistory.bonus}"></td>
+            <td><a th:href="@{/overtime(jobHistoryId=${singleJobHistory.id})}">Track Overtimes...</a></td>
             <td><button type="button" th:attr="onclick=|deleteJobHistoryById('${singleJobHistory.id}')|">Delete</button></td>
         </tr>
         </tbody>
