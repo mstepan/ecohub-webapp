@@ -1,6 +1,7 @@
 package com.github.kostia.ecohub.flows.location;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.relational.core.conversion.DbActionExecutionException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,13 +42,19 @@ public class LocationController {
 
     @GetMapping("/location/delete")
     public String deleteLocation(@RequestParam("locationId") String locationId, Model model) {
-
-        locationRepo.deleteById(Integer.parseInt(locationId));
+        try {
+            locationRepo.deleteById(Integer.parseInt(locationId));
+        }
+        catch(DbActionExecutionException dbEx){
+            log.error("Can't delete location, there is department related to location");
+            model.addAttribute("errorMessage",
+                "Can't delete location, there is department related to location");
+        }
 
         model.addAttribute("location", Location.builder().build());
         model.addAttribute("allLocations", locationRepo.findAll());
 
-        return "redirect:/location";
+        return "location";
     }
 
 }

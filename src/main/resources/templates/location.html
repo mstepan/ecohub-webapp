@@ -29,6 +29,11 @@
 </form>
 
 <button type="button" onclick="goBack()">Back</button>
+<br>
+
+<!-- Display error message if it exists -->
+<span th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></span>
+<br>
 
 <div class="table-container">
     <table id="locationTable">

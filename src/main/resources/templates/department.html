@@ -20,7 +20,8 @@
 
     <!-- Phone Number -->
     <label for="phoneNumber">Phone Number:</label>
-    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required maxlength="32"/>
+    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required maxlength="10"
+           pattern="[0-9]{10}" title="Enter a 10-digit phone number"/>
 
     <br/>
 
