@@ -24,8 +24,7 @@ public class LocationController {
 
     @GetMapping("/location")
     public String location(Model model) {
-        model.addAttribute("location", Location.builder().build());
-        model.addAttribute("allLocations", locationRepo.findAll());
+        fillDataModel(model);
 
         return "location";
     }
@@ -34,8 +33,7 @@ public class LocationController {
     public String addLocation(@ModelAttribute Location location, Model model) {
         locationRepo.save(location);
 
-        model.addAttribute("location", Location.builder().build());
-        model.addAttribute("allLocations", locationRepo.findAll());
+        fillDataModel(model);
 
         return "location";
     }
@@ -51,10 +49,14 @@ public class LocationController {
                 "Can't delete location, there is department related to location");
         }
 
-        model.addAttribute("location", Location.builder().build());
-        model.addAttribute("allLocations", locationRepo.findAll());
+        fillDataModel(model);
 
         return "location";
+    }
+
+    private void fillDataModel(Model model){
+        model.addAttribute("location", Location.builder().build());
+        model.addAttribute("allLocations", locationRepo.findAll());
     }
 
 }

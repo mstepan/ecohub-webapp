@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Disaster Tracker</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Disaster Tracker</h2>
+
+<form id="disasterForm" th:action="@{/disaster}" th:object="${disaster}" method="post">
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" th:field="*{type}" required maxlength="128">
+
+    <label for="casualties">Casualties:</label>
+    <input type="text" id="casualties" th:field="*{casualties}" required maxlength="5" pattern="[0-9]+" title="Please enter a valid integer">
+
+    <label for="totalCost">Total Cost:</label>
+    <input type="text" id="totalCost" th:field="*{totalCost}" required maxlength="7" pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid double">
+
+    <button type="submit">Add Disaster</button>
+</form>
+
+<button type="button" onclick="goBack()">Back</button>
+<br>
+
+<div class="table-container">
+    <table id="disasterTable">
+    <thead>
+    <tr>
+        <th>TYpe</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- Show Disasters rows here -->
+    <tr th:each="singleDisaster : ${allDisasters}">
+        <td th:text="${singleDisaster.type}"></td>
+        <td><button type="button" th:attr="onclick=|deleteDisasterById('${singleDisaster.id}')|">Delete</button></td>
+    </tr>
+    </tbody>
+
+</table>
+</div>
+
+<script>
+    function deleteDisasterById(disasterId) {
+        window.location.href = '/ecohub/disaster/delete?disasterId=' + disasterId;
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/';
+    }
+</script>
+
+</body>
+</html>
