@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Manager Information</h2>
+
+<form id="managerForm" th:action="@{/manager}" th:object="${manager}" method="post">
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" th:field="*{firstName}" required maxlength="128">
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" th:field="*{lastName}" required maxlength="128">
+
+    <button type="submit">Add Manager</button>
+</form>
+
+<button type="button" onclick="goBack()">Back</button>
+<br>
+
+<!-- Display error message if it exists -->
+<span th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></span>
+<br>
+
+<div class="table-container">
+    <table id="managerTable">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- Show Head Leaders rows here -->
+    <tr th:each="singleManager : ${allManagers}">
+        <td th:text="${singleManager.firstName}"></td>
+        <td th:text="${singleManager.lastName}"></td>
+        <td><button type="button" th:attr="onclick=|deleteManagerById('${singleManager.id}')|">Delete</button></td>
+    </tr>
+    </tbody>
+
+</table>
+</div>
+
+<script>
+    function deleteManagerById(managerId) {
+        window.location.href = '/ecohub/manager/delete?managerId=' + managerId;
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/';
+    }
+</script>
+
+</body>
+</html>
