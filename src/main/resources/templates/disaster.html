@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
     <title>Disaster Tracker</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
@@ -25,6 +25,10 @@
     <button type="submit">Add Disaster</button>
 </form>
 
+<!-- Display error message if it exists -->
+<span th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></span>
+<br>
+
 <button type="button" onclick="goBack()">Back</button>
 <br>
 
@@ -32,7 +36,9 @@
     <table id="disasterTable">
     <thead>
     <tr>
-        <th>TYpe</th>
+        <th>Type</th>
+        <th>Casualties</th>
+        <th>Total Cost</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -41,6 +47,8 @@
     <!-- Show Disasters rows here -->
     <tr th:each="singleDisaster : ${allDisasters}">
         <td th:text="${singleDisaster.type}"></td>
+        <td th:text="${singleDisaster.casualties}"></td>
+        <td th:text="${singleDisaster.totalCost}"></td>
         <td><button type="button" th:attr="onclick=|deleteDisasterById('${singleDisaster.id}')|">Delete</button></td>
     </tr>
     </tbody>
