@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Offs for Employee</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Day Offs for Employee: <span th:text="${employee.firstName + ' ' + employee.lastName}"></span></h2>
+
+<form th:action="@{/day_off}" method="post" th:object="${dayOff}">
+
+    <!-- Number of Days  -->
+    <label for="numberOfDays">Number of Days:</label>
+    <input type="text" id="numberOfDays" name="numberOfDays" th:field="*{numberOfDays}" required maxlength="7"
+           pattern="[0-9]+" title="Please enter a valid integer"/>
+
+    <!-- Reason -->
+    <label for="reason">Reason:</label>
+    <input type="text" id="reason" name="reason" th:field="*{reason}" required maxlength="64"/>
+
+    <!-- Start Date -->
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate" th:field="*{startDate}" required/>
+
+    <!-- End Date -->
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" name="endDate" th:field="*{endDate}"/>
+
+    <button type="submit">Create</button>
+</form>
+
+<button type="button" onclick="goBack()">Back</button>
+
+<div class="table-container">
+    <table id="jobHistoryTable">
+        <thead>
+        <tr>
+            <th>Number of Days</th>
+            <th>Reason</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- Show Job History rows here -->
+        <tr th:each="singleDayOff : ${allDaysOffs}">
+            <td th:text="${singleDayOff.numberOfDays}"></td>
+            <td th:text="${singleDayOff.reason}"></td>
+            <td th:text="${singleDayOff.startDate}"></td>
+            <td th:text="${singleDayOff.endDate}"></td>
+            <td><button type="button" th:attr="onclick=|deleteDayOffById('${singleDayOff.id}')|">Delete</button></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    function deleteDayOffById(dayOffId) {
+       window.location.href = '/ecohub/day_off/delete?dayOffId=' + dayOffId;
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/employee';
+    }
+</script>
+
+</body>
+</html>

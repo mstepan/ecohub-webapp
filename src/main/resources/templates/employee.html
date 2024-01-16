@@ -79,6 +79,7 @@
         <th>Hire Date</th>
         <th>Phone</th>
         <th>Job History</th>
+        <th>Day Offs</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -93,7 +94,8 @@
         <td th:text="${singleEmployee.email}"></td>
         <td th:text="${singleEmployee.hireDate}"></td>
         <td th:text="${singleEmployee.phoneNumber}"></td>
-        <td><a th:href="@{/job_history(employeeId=${singleEmployee.id})}">See more...</a></td>
+        <td><a th:href="@{/job_history(employeeId=${singleEmployee.id})}">See Job History...</a></td>
+        <td><a th:href="@{/day_off(employeeId=${singleEmployee.id})}">See Day Offs...</a></td>
         <td><button type="button" th:attr="onclick=|deleteEmployeeById('${singleEmployee.id}')|">Delete</button></td>
     </tr>
     </tbody>
