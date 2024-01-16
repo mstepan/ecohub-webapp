@@ -1,7 +1,6 @@
 package com.github.kostia.ecohub.flows.employee;
 
 import com.github.kostia.ecohub.flows.department.Department;
-import com.github.kostia.ecohub.flows.location.Location;
 import com.github.kostia.ecohub.flows.manager.Manager;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

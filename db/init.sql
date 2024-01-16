@@ -110,8 +110,8 @@ CREATE TABLE day_off (
     employee_id INTEGER,
     number_of_days INTEGER,
     reason VARCHAR(64),
-    start_date VARCHAR(64),
-    end_date VARCHAR(64),
+    start_date DATE,
+    end_date DATE,
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
 
@@ -121,8 +121,8 @@ CREATE TABLE employee_job_history (
     employee_id INTEGER,
     salary NUMERIC(10,2),
     bonus NUMERIC(10,2),
-    start_date VARCHAR(64),
-    end_date VARCHAR(64),
+    start_date DATE,
+    end_date DATE,
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
     FOREIGN KEY (job_id) REFERENCES job(job_id)
 );
@@ -130,8 +130,8 @@ CREATE TABLE employee_job_history (
 CREATE TABLE overtime (
     overtime_id SERIAL PRIMARY KEY,
     job_history_id INTEGER,
-    start_date VARCHAR(64),
-    end_date VARCHAR(64),
+    start_date DATE,
+    end_date DATE,
     FOREIGN KEY (job_history_id) REFERENCES employee_job_history(job_history_id)
 );
 

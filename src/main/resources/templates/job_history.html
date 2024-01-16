@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job History for Employee</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Job History for Employee: <span th:text="${employee.firstName + ' ' + employee.lastName}"></span></h2>
+
+<form th:action="@{/job_history}" method="post" th:object="${jobHistory}">
+
+    <!-- Job Dropdown -->
+    <label for="job">Job:</label>
+    <select id="job" name="jobId" th:field="*{jobId}" required>
+        <option th:each="singleJob : ${allJobs}" th:value="${singleJob.id}" th:text="${singleJob.type}"></option>
+    </select>
+    <br/>
+
+    <!-- Funds Raised -->
+<!--    <label for="fundsRaised">Funds Raised:</label>-->
+<!--    <input type="text" id="fundsRaised" name="fundsRaised" th:field="*{fundsRaised}" required maxlength="7"-->
+<!--           pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid double"/>-->
+<!--    <br/>-->
+
+    <button type="submit">Create</button>
+</form>
+
+<button type="button" onclick="goBack()">Back</button>
+
+<div class="table-container">
+    <table id="jobHistoryTable">
+        <thead>
+        <tr>
+            <th>Job</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- Show Job History rows here -->
+        <tr th:each="singleJobHistory : ${allJobHistory}">
+            <td th:text="${singleJobHistory.job.type}"></td>
+            <td><button type="button" th:attr="onclick=|deleteJobHistoryById('${singleJobHistory.id}')|">Delete</button></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    function deleteJobHistoryById(jobHistoryId) {
+       window.location.href = '/ecohub/job_history/delete?jobHistoryId=' + jobHistoryId;
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/employee';
+    }
+</script>
+
+</body>
+</html>
