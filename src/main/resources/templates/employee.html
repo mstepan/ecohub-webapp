@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Employee Information</h2>
+
+<form id="employeeForm" th:action="@{/employee}" th:object="${employee}" method="post">
+
+    <!-- Department Dropdown -->
+    <label for="department">Department:</label>
+    <select id="department" name="departmentId" th:field="*{departmentId}" required>
+        <option th:each="singleDepartment : ${allDepartments}" th:value="${singleDepartment.id}" th:text="${singleDepartment.name}"></option>
+    </select>
+    <br/>
+
+    <!-- Manager Dropdown -->
+    <label for="manager">Manager:</label>
+    <select id="manager" name="managerId" th:field="*{managerId}" required>
+        <option th:each="singleManager : ${allManagers}" th:value="${singleManager.id}" th:text="${singleManager.firstName + ' ' + singleManager.lastName}"></option>
+    </select>
+    <br/>
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" th:field="*{firstName}" required maxlength="64">
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" th:field="*{lastName}" required maxlength="64">
+
+    <button type="submit">Add Employee</button>
+</form>
+
+<button type="button" onclick="goBack()">Back</button>
+<br>
+
+<!-- Display error message if it exists -->
+<span th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></span>
+<br>
+
+<div class="table-container">
+    <table id="employeeTable">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- Show Locations rows here -->
+    <tr th:each="singleEmployee : ${allEmployees}">
+        <td th:text="${singleEmployee.firstName}"></td>
+        <td th:text="${singleEmployee.lastName}"></td>
+        <td><button type="button" th:attr="onclick=|deleteEmployeeById('${singleEmployee.id}')|">Delete</button></td>
+    </tr>
+    </tbody>
+
+</table>
+</div>
+
+<script>
+    function deleteEmployeeById(employeeId) {
+        window.location.href = '/ecohub/employee/delete?employeeId=' + employeeId;
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/';
+    }
+</script>
+
+</body>
+</html>

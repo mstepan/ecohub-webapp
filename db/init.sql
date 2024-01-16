@@ -99,7 +99,7 @@ CREATE TABLE employee (
     gender VARCHAR(64),
     age INTEGER,
     email VARCHAR(64),
-    hire_date VARCHAR(64),
+    hire_date DATE,
     phone_number VARCHAR(64),
     FOREIGN KEY (department_id) REFERENCES department(department_id),
     FOREIGN KEY (manager_id) REFERENCES manager(manager_id)
