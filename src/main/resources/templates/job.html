@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Information</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Job Information</h2>
+
+<form id="jobForm" th:action="@{/job}" th:object="${job}" method="post">
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" th:field="*{type}" required maxlength="32">
+
+    <label for="minSalary">Min Salary:</label>
+    <input type="text" id="minSalary" th:field="*{minSalary}" required maxlength="7"
+           pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid double">
+
+    <label for="maxSalary">Max Salary:</label>
+    <input type="text" id="maxSalary" th:field="*{maxSalary}" required maxlength="7"
+           pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid double">
+
+    <button type="submit">Add Job</button>
+</form>
+
+<button type="button" onclick="goBack()">Back</button>
+<br>
+
+<!-- Display error message if it exists -->
+<span th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></span>
+<br>
+
+<div class="table-container">
+    <table id="jobTable">
+    <thead>
+    <tr>
+        <th>Type</th>
+        <th>Min Salary</th>
+        <th>Max Salary</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- Show Locations rows here -->
+    <tr th:each="singleJob : ${allJobs}">
+        <td th:text="${singleJob.type}"></td>
+        <td th:text="${singleJob.minSalary}"></td>
+        <td th:text="${singleJob.maxSalary}"></td>
+        <td><button type="button" th:attr="onclick=|deleteJobById('${singleJob.id}')|">Delete</button></td>
+    </tr>
+    </tbody>
+
+</table>
+</div>
+
+<script>
+    function deleteJobById(jobId) {
+        window.location.href = '/ecohub/job/delete?jobId=' + jobId;
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/';
+    }
+</script>
+
+</body>
+</html>
