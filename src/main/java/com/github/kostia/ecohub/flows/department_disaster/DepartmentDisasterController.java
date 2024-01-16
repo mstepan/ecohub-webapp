@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Slf4j
 @Controller
 public class DepartmentDisasterController {
@@ -93,7 +95,12 @@ public class DepartmentDisasterController {
         model.addAttribute("department", departmentRepo.findById(curDepId).get());
         model.addAttribute("allDisasters", disasterRepo.findAll());
         model.addAttribute("departmentDisaster", DepartmentDisaster.builder().build());
-        model.addAttribute("allDepartmentDisasters", depDisasterRepo.findAllDisastersForDepartmentId(curDepId));
+
+        List<DepartmentDisaster> allDepartmentDisasters = depDisasterRepo.findAllDisastersForDepartmentId(curDepId);
+        allDepartmentDisasters.forEach( singleDepDis ->
+            singleDepDis.setDisaster(disasterRepo.findById(singleDepDis.getDisasterId()).orElseThrow()));
+
+        model.addAttribute("allDepartmentDisasters", allDepartmentDisasters);
     }
 
 }

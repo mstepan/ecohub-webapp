@@ -38,14 +38,16 @@
         <thead>
         <tr>
             <th>Description</th>
+            <th>Disaster Type</th>
             <th>Action</th>
         </tr>
         </thead>
 
         <tbody>
-        <!-- Show Departments rows here -->
+        <!-- Show Department Disaster rows here -->
         <tr th:each="singleDepDis : ${allDepartmentDisasters}">
             <td th:text="${singleDepDis.description}"></td>
+            <td th:text="${singleDepDis.disaster.type}"></td>
             <td><button type="button" th:attr="onclick=|deleteDepartmentDisById('${singleDepDis.id}')|">Delete</button></td>
         </tr>
         </tbody>

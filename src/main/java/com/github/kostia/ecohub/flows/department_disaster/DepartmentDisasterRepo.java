@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface DepartmentDisasterRepo extends CrudRepository<DepartmentDisaster, Integer>{
 
-    @Query("SELECT * FROM department_disaster WHERE department_id = :departmentId")
+    @Query("SELECT DD.* FROM department_disaster DD JOIN disaster D ON D.disaster_id = DD.disaster_id WHERE DD.department_id = :departmentId")
     List<DepartmentDisaster> findAllDisastersForDepartmentId(@Param("departmentId") Integer departmentId);
 
 }
