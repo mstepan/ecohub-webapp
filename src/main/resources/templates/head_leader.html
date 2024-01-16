@@ -34,6 +34,7 @@
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Charity Events</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -43,6 +44,7 @@
     <tr th:each="singleHeadLeader : ${allHeadLeaders}">
         <td th:text="${singleHeadLeader.firstName}"></td>
         <td th:text="${singleHeadLeader.lastName}"></td>
+        <td><a th:href="@{/charity_event(headLeaderId=${singleHeadLeader.id})}">See more...</a></td>
         <td><button type="button" th:attr="onclick=|deleteHeadLeaderById('${singleHeadLeader.id}')|">Delete</button></td>
     </tr>
     </tbody>

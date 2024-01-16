@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity Events for Head Leader</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Charity Events for Leader: <span th:text="${headLeader.firstName + ' ' + headLeader.lastName}"></span></h2>
+
+<form th:action="@{/charity_event}" method="post" th:object="${charityEvent}">
+
+    <!-- Department Dropdown -->
+    <label for="department">Department:</label>
+    <select id="department" name="departmentId" th:field="*{departmentId}" required>
+        <option th:each="singleDepartment : ${allDepartments}" th:value="${singleDepartment.id}" th:text="${singleDepartment.name}"></option>
+    </select>
+    <br/>
+
+    <!-- Funds Raised -->
+    <label for="fundsRaised">Funds Raised:</label>
+    <input type="text" id="fundsRaised" name="fundsRaised" th:field="*{fundsRaised}" required />
+    <br/>
+
+    <button type="submit">Create</button>
+</form>
+
+<button type="button" onclick="goBack()">Back</button>
+
+<div class="table-container">
+    <table id="departmentDisasterTable">
+        <thead>
+        <tr>
+            <th>Funds Raised</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- Show Charity Event rows here -->
+        <tr th:each="singleCharityEvent : ${allCharityEvents}">
+            <td th:text="${singleCharityEvent.fundsRaised}"></td>
+            <td><button type="button" th:attr="onclick=|deleteCharityEventById('${singleCharityEvent.id}')|">Delete</button></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    function deleteCharityEventById(charityEventId) {
+       window.location.href = '/ecohub/charity_event/delete?charityEventId=' + charityEventId;
+    }
+
+    function goBack() {
+        window.location.href = '/ecohub/head_leader';
+    }
+</script>
+
+</body>
+</html>
